@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "djobproject1_backend": {
+      "candid": "src/djobproject1_backend/djobproject1_backend.did",
+      "package": "djobproject1_backend",
+      "type": "rust"
+    },
+    "djobproject1_frontend": {
+      "dependencies": [
+        "djobproject1_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/djobproject1_frontend/src/index.html"
+      },
+      "source": [
+        "src/djobproject1_frontend/assets",
+        "dist/djobproject1_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

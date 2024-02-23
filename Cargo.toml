@@ -1,0 +1,4 @@
+[workspace]
+members = [
+    "src/djobproject1_backend",
+]
