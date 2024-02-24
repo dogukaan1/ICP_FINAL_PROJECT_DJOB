@@ -34,6 +34,7 @@ struct Advert{
     description:String,
     price:String,
     category:String,
+    email:String,
    
 
 }
@@ -132,6 +133,22 @@ fn create_user(name:String,lastname:String,email:String,password: String,birthYe
     if name.is_empty() || lastname.is_empty() || email.is_empty()||password.is_empty(){
         return Err(userError::unfilled("boş alanlar mevcut".to_string()));
     }
+    let inuseEmail=USER_MAP.with(|p| {
+        let user_map = p.borrow();
+       /*  for (_, user) in user_map.iter() {
+            if user.email == email {
+                return Err(userError::inUse("Girilen e-posta adresi zaten mevcut".to_string()));
+            }
+        }*/
+        user_map.iter().any(|(_, user)| user.email == email)
+
+    });
+    if inuseEmail{
+        return Err(userError::inUse("Girilen e-posta adresi zaten mevcut".to_string()));
+
+    }else{
+ 
+ 
     
    USER_MAP.with(|p|{
     let mut user_map = p.borrow_mut();
@@ -146,7 +163,7 @@ fn create_user(name:String,lastname:String,email:String,password: String,birthYe
     let new_user_id=user_map.len();
 user_map.insert(new_user_id,new_user);
    });
-   Ok(userResult::Success("üyeliğiniz oluşturulmuştur".to_string()))
+   Ok(userResult::Success("üyeliğiniz oluşturulmuştur".to_string()))}
 }
 
 /*#[ic_cdk_macros::query]
@@ -175,10 +192,10 @@ users
 } 
 
 #[ic_cdk::update]
-fn create_advert(title: String, description: String, price: String, category: String)->Result<userResult, userError> {
+fn create_advert(title: String, description: String, price: String, category: String,email: String)->Result<userResult, userError> {
     
 
-     if title.is_empty() || description.is_empty() || price.is_empty()||category.is_empty(){
+     if title.is_empty() || description.is_empty() || price.is_empty()||category.is_empty()||email.is_empty(){
         return Err(userError::unfilled("boş alanlar mevcut".to_string()));
     }
 
@@ -190,6 +207,7 @@ fn create_advert(title: String, description: String, price: String, category: St
         description:description,
         price:price,
         category:category,
+        email:email,
       
         
     };
@@ -298,5 +316,23 @@ fn login_user(email: String, password: String) -> Result<userResult, userError> 
             }
         }
         Err(userError::incorrectEmail("E-posta adresi bulunamadı.".to_string()))
+    })
+}
+#[ic_cdk::update]
+fn delete_advert_by_category(category: String) -> Result<userResult, userError> {
+    ADVERT_MAP.with(|advert_map| {
+        let mut to_remove = None;
+        for (id, advert) in advert_map.borrow().iter() {
+            if advert.category == category {
+                to_remove = Some(id.clone());
+                break;
+            }
+        }
+        if let Some(id) = to_remove {
+            advert_map.borrow_mut().remove(&id);
+            Ok(userResult::Success("Kullanıcı silindi.".to_string()))
+        } else {
+            Err(userError::unfilled("Kullanıcı bulunamadı.".to_string()))
+        }
     })
 }

@@ -17,6 +17,7 @@ type Advert = record {
     description:text;
     price:text;
     category:text;
+    email:text;
     
 };
 type ProgrammingLang=variant{
@@ -38,6 +39,10 @@ type userResult=variant{
 };
 type userError=variant{
    unfilled:text;
+    incorrectEmail:text;
+    incorrectPassword:text;
+    inUse:text;
+   
 };
 type Result=variant{
     Ok:userResult;
@@ -47,13 +52,14 @@ type Result=variant{
 service:{
     "create_user":(text,text,text,text,nat32)-> (Result);
     "sort_users":()->(vec User) query;
-    "create_advert":(text,text,text,text)->(Result);
+    "create_advert":(text,text,text,text,text)->(Result);
     "list_adverts":()->(vec Advert) query;
     "get_user_by_email":(text)->(opt User)query;
     "clear_users":()->();
     "list_adverts_by_category":()->(vec text) query;
     "delete_user_by_email":(text)->(Result);
     "login_user":(text,text)->(Result);
+    "delete_advert_by_category":(text)->(Result);
 
     /*"get_all_users":()->(Vec<User>) query;
     "get_users_sorted_by_name":()->(Vec<User>) query;

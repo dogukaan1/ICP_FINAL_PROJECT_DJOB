@@ -1,25 +1,37 @@
 # djobproject1
 
-Welcome to your new djobproject1 project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Project Name: djob
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+Who I Am: I am Doğu Kaan Sakkallı.
 
-To learn more before you start working with djobproject1, see the following documentation available online:
+Project Details: A freelance job advertisement website that runs on the Internet Computer.
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+Vision: To enable people to easily get their jobs done for a fee in a secure manner, and for developers to earn income by doing these jobs.
 
-If you want to start working on your project right away, you might want to try the following commands:
+Project Description: djob, written in Rust and using the Internet Computer Protocol, aims to create a reliable and user-friendly platform. Freelancers can reach people looking for jobs, and employers can find suitable talents for their projects. All transactions are conducted on the blockchain, ensuring security and transparency.
 
-```bash
-cd djobproject1/
-dfx help
-dfx canister --help
-```
+Vision Statement: djob offers a solution for those who want to quickly and reliably get their jobs done. It also provides income opportunities for developers. This platform enables people to work more efficiently and independently, thus changing and improving the way we work.
+
+Software Development Plan:
+
+Development of smart contracts: Smart contracts will be created for job postings and payments.
+
+User management and security features: Features will be developed to allow users to register securely and verify their identities.
+
+Job posting and application process: An interface will be developed for employers to create job postings and for freelancers to apply.
+
+Payment and balance management: A system will be created for users to manage their payments and balances.
+
+Interface and user experience improvement: Interface and experience enhancements will be made to ensure that the platform is user-friendly and accessible.
+
+Deployment: The platform will be published on the Internet Computer and made available for use.
+
+Story Summary: My goal is to create a blockchain-based freelance job site that enables people to easily get their jobs done and allows developers to earn 
+income. This platform will help people complete their jobs quickly and securely, creating new business models and opportunities.
+
+
+
+
 
 ## Running the project locally
 

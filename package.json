@@ -19,7 +19,8 @@
   "dependencies": {
     "@dfinity/agent": "^1.0.1",
     "@dfinity/candid": "^1.0.1",
-    "@dfinity/principal": "^1.0.1"
+    "@dfinity/principal": "^1.0.1",
+    "antd": "^5.14.2"
   },
   "devDependencies": {
     "assert": "2.0.0",
