@@ -2,9 +2,7 @@ use candid::{CandidType, Decode, Deserialize, Encode};
 use ic_stable_structures::memory_manager::{MemoryId, MemoryManager, VirtualMemory};
 use ic_stable_structures::{BoundedStorable, DefaultMemoryImpl, StableBTreeMap, Storable};
 use std::{borrow::Cow, cell::RefCell};
-use ic_cdk::storage;
-use std::collections::BTreeMap;
-use ic_cdk::export::Principal;
+
 
 
 #[derive(Clone,CandidType, Deserialize)]
@@ -102,7 +100,7 @@ impl Storable for Advert {
     }
 }
 type Memory = VirtualMemory<DefaultMemoryImpl>;
-const MAX_VALUE_SIZE: u32 = 100;
+const MAX_VALUE_SIZE: u32 = 10000000;
 impl BoundedStorable for User {
     const MAX_SIZE: u32 = MAX_VALUE_SIZE; 
     const IS_FIXED_SIZE: bool = false;
@@ -135,11 +133,7 @@ fn create_user(name:String,lastname:String,email:String,password: String,birthYe
     }
     let inuseEmail=USER_MAP.with(|p| {
         let user_map = p.borrow();
-       /*  for (_, user) in user_map.iter() {
-            if user.email == email {
-                return Err(userError::inUse("Girilen e-posta adresi zaten mevcut".to_string()));
-            }
-        }*/
+       
         user_map.iter().any(|(_, user)| user.email == email)
 
     });
@@ -166,18 +160,7 @@ user_map.insert(new_user_id,new_user);
    Ok(userResult::Success("üyeliğiniz oluşturulmuştur".to_string()))}
 }
 
-/*#[ic_cdk_macros::query]
-fn sort_users()->Vec<User> {
-    let mut users = Vec::new();
-    USER_MAP.with(|p|{
-        let user_map=p.borrow();
-        let mut iter = user_map.iter();
-    while let Some((_, user)) = iter.next() {
-    users.push(user.clone());
-}
-});
-users    
-} */
+
 #[ic_cdk_macros::query]
 fn sort_users()->Vec<User> {
     let mut users = Vec::new();
@@ -208,8 +191,6 @@ fn create_advert(title: String, description: String, price: String, category: St
         price:price,
         category:category,
         email:email,
-      
-        
     };
     let new_advert_id=advert_map.len();
     advert_map.insert(new_advert_id,new_advert);
@@ -218,30 +199,7 @@ fn create_advert(title: String, description: String, price: String, category: St
    Ok(userResult::Success("ilanınız oluşturulmuştur".to_string()))
 }
 
-/*#[ic_cdk_macros::query]
-fn sort_adverts()->Vec<Advert> {
-   let mut adverts = Vec::new();
-    ADVERT_MAP.with(|p|{
-        let advert_map=p.borrow();
-        let mut iter = advert_map.iter();
-    while let Some((_, advert)) = iter.next() {
-        adverts.push(advert.clone());
-}
-});
-adverts    
-} 
-#[ic_cdk_macros::query]
-fn sort_adverts() -> Vec<Advert> {
-    let mut adverts = Vec::new();
-    ADVERT_MAP.with(|p| {
-        let advert_map = p.borrow();
-        for (_, advert) in advert_map.iter() {
-            adverts.push(advert.clone());
-        }
-    });
-    adverts
-}
- */
+
 #[ic_cdk_macros::query]
 fn list_adverts() -> Vec<Advert> {
     let mut adverts = Vec::new();

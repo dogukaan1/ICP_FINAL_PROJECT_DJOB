@@ -60,6 +60,7 @@ window.onclick = function(event) {
   }
 }
 let email=""
+
 document.getElementById("login-form").addEventListener("submit", async function(event) {
   event.preventDefault(); 
   
@@ -67,13 +68,21 @@ document.getElementById("login-form").addEventListener("submit", async function(
   let passwordLogin = document.getElementById("passwordLogin").value.toString();
   let openModalBtn = document.getElementById("openModalBtn")
   let userEmail = document.getElementById("user-email")
+  let wallet=document.getElementById("walletBtn")
   const loginUser=await djobproject1_backend.login_user(emailLogin,passwordLogin);
   try {
     if (Object.keys(loginUser.Ok).length) {
       alert(loginUser.Ok.Success)
       openModalBtn.style.display ="none"
       userEmail.innerText= `Welcome ${emailLogin}  `
+      wallet.style.display="block";
+      btnLogin.style.display="none"
       modalLogin.style.display = "none";
+      btnCreateAdvert.style.display="block"
+      wallet.addEventListener('click', function() {
+        alert('coming soon...');
+      });
+      
     }
   } catch (error) {
     if (Object.keys(loginUser.Err).length) alert(loginUser.Err.incorrectEmail)
@@ -132,7 +141,7 @@ function verileriListele() {
       kart.className = "card";
       let icerik = `
           <div class="container">
-                  <h1>Title: <b> ${veri.title}</b></h1>
+                  <h1> <b> ${veri.title}</b></h1>
                   <h4>Category: <b> ${veri.category}</b></h4>
                   <h4>Mail:  <b>${veri.email}</b></h4>
               <hr/>
@@ -148,6 +157,7 @@ function verileriListele() {
   });
 }
 window.onload = verileriListele();
+
 //#endregion
 
 

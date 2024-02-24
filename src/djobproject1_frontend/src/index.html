@@ -140,6 +140,12 @@
   gap: 15px;
   align-items: center;
 }
+#walletBtn{
+  display: none;
+}
+#open-create-advert-modal-btn{
+  display: none;
+}
   </style>
     <base href="/" />
     <link rel="icon" href="favicon.ico" />
@@ -166,8 +172,10 @@
 
       
       <div class="header-buttons">
-        <button id="openModalBtn" class="btn-group">Kayıt Ol</button>
+        <button id="openModalBtn" class="btn-group">Register</button>
+        
         <h4 id="user-email"></h4>
+        <button id="walletBtn" class="btn-group">Wallet</button>
         <button id="open-login-modal-btn"class="btn-group">Login</button>
         <button id="open-create-advert-modal-btn"class="btn-group">Create Job</button>
       </div>
@@ -181,7 +189,7 @@
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Kayıt Ol</h2>
+        <h2>Register </h2>
         <form class="form" id="myform" >
           <div class="input-container">
             <label for="name"> name</label>
@@ -231,7 +239,7 @@
     <div id="create-advert-modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Create job</h2>
+        <h2>Create advert</h2>
         <form class="create-advert-form" id="create-advert-form"  >
      
           <div class="input-container">
